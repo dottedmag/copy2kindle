@@ -3,7 +3,6 @@
 * INBOX
 * Quick
 ** Option: select Kindle if more than one detected
-** Publish on PyPI
 ** Option: verbose/quiet
 * Converters
 ** Implement epub converter
