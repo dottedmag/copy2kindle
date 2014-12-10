@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+import version
 
 def python_version():
     import sys
@@ -14,7 +15,7 @@ if python_version() < (3, 3):
 
 setup(
     name='copy2kindle',
-    version='0.1',
+    version=version.getVersion(),
     description='A tool to copy .mobi to USB-attached Kinlde',
     url='https://github.com/dottedmag/copy2kindle',
     author='Mikhail Gusarov',
