@@ -1,9 +1,24 @@
 # -*- mode: org -*-
 
 * INBOX
-** Select Kindle if more than 1 detected
-** Fallback via e-mail
-** Option: force via e-mail
-** Convert unsupported by Kindle filetypes to .mobi
-** Linux
-** Put onto PyPI
+* Quick
+** Option: select Kindle if more than one detected
+** Publish on PyPI
+** Option: verbose/quiet
+* Converters
+** Implement epub converter
+*** Obtain kindlegen automatically
+*** Add .epub converter
+* Someday/maybe
+** Send files via e-mail
+*** Interactive setup of Kindle account
+**** Store Kindle account information somewhere
+**** Edit information on first use
+*** Interactive setup of send mechanism
+**** Propose gmail
+**** Detect working sendmail(1)
+*** Option: e-mail if Kindle is not available
+*** Option: always e-mail
+** Support more operating systems
+*** Linux
+*** Windows
