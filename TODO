@@ -8,6 +8,9 @@
 ** Implement epub converter
 *** Obtain kindlegen automatically
 *** Add .epub converter
+** Implement fb2 converter
+*** Add fb2 body -> XHTML converter
+*** Add inline images extractor
 * Someday/maybe
 ** Send files via e-mail
 *** Interactive setup of Kindle account
