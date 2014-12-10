@@ -4,13 +4,17 @@
 
 import sys
 import os.path
-import argparse
 import plistlib
-import subprocess32
-subprocess = subprocess32
+
+try:
+    import subprocess
+    subprocess.TimeoutExpired
+except AttributeError:
+    import subprocess32
+    subprocess = subprocess32
+
 import collections
 import shutil
-
 
 def run_diskutil(args):
     with open('/dev/null', 'r') as devnull:
