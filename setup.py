@@ -7,7 +7,7 @@ def python_version():
 install_requires=[]
 
 if python_version() < (3, 3):
-    install_requires += 'subprocess32'
+    install_requires.append('subprocess32')
 
 setup(
     name='copy2kindle',
