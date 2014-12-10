@@ -6,6 +6,9 @@ def python_version():
 
 install_requires=[]
 
+if python_version() < (3, 2):
+    install_requires.append('argparse')
+
 if python_version() < (3, 3):
     install_requires.append('subprocess32')
 
@@ -29,7 +32,7 @@ setup(
     keywords='kindle mobi ebook',
     entry_points={
         'console_scripts': [
-            'copy2kindle=copy2kindle:main'
+            'copy2kindle=copy2kindle.cli:main'
         ]
     },
     install_requires=install_requires,

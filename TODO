@@ -4,7 +4,6 @@
 ** Select Kindle if more than 1 detected
 ** Fallback via e-mail
 ** Option: force via e-mail
-** Option: Skip unrecognized files
 ** Convert unsupported by Kindle filetypes to .mobi
 ** Linux
 ** Put onto PyPI
