@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2015 Mikhail Gusarov <dottedmag@dottedmag.net>
+# Copyright (c) 2014 Mikhail Gusarov <dottedmag@dottedmag.net>
 # BSD 2-clause license. See COPYING for details.
 
 import sys
