@@ -8,7 +8,7 @@ Compatibility: OS X. Patches for other operating systems are welcome.
 Usage
 -----
 
-copy2kindle <file.mobi> <file.mobi>...
+    copy2kindle <file.mobi> <file.mobi>...
 
 Contributing
 ------------
