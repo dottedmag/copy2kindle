@@ -1,0 +1,3 @@
+[run]
+branch = True
+omit = */subprocess32.py, */enum/__init__.py
