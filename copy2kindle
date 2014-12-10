@@ -64,25 +64,24 @@ def unmount(kindle):
     run_diskutil(['unmount', kindle.dev])
 
 
+def fatal(message):
+    sys.stderr.write(message+'\n')
+    sys.exit(1)
+
 def do_copy(filenames):
     for f in filenames:
         if not os.path.exists(f):
-            print f+' does not exist'
-            exit(1)
+            fatal(f+' does not exist')
         if not os.path.isfile(f):
-            print f+' is not a regular file'
-            exit(1)
+            fatal(f+' is not a regular file')
         if not f.endswith('.mobi') and not f.endswith('.azw'):
-            print f+' is not a .mobi file'
-            exit(1)
+            fatal(f+' is not a .mobi file')
 
     kindles = list(find_kindles())
     if not kindles:
-        print 'Kindle not found'
-        exit(1)
+        fatal('Kindle not found')
     if len(kindles) > 1:
-        print 'Too many Kindles'
-        exit(1)
+        fatal('Too many Kindles')
     kindle = kindles[0]
 
     do_unmount = False
@@ -93,7 +92,7 @@ def do_copy(filenames):
     destdir = kindle.mountpoint + '/documents'
 
     for f in filenames:
-        print f+' -> '+destdir
+        sys.stdout.write(f+' -> '+destdir+'\n')
         shutil.copy(f, destdir)
 
     if do_unmount:
