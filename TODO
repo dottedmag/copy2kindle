@@ -7,3 +7,6 @@
 ** Option: Skip unrecognized files
 ** Convert unsupported by Kindle filetypes to .mobi
 ** Errors to stderr
+** Linux
+** setup.py
+** Put onto PyPI
