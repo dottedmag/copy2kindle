@@ -98,6 +98,5 @@ def do_copy(filenames):
     if do_unmount:
         unmount(kindle)
 
-
-if __name__ == '__main__':
+def main():
     do_copy(sys.argv[1:])
