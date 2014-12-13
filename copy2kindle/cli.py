@@ -6,6 +6,7 @@ import sys
 
 from . import darwin
 from . import copier
+from . import common
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-s', '--sloppy', action='store_true',
@@ -21,4 +22,7 @@ def main():
     if not len(args.file):
         parser.print_help()
         sys.exit(0)
-    copier.do_copy(darwin, args.file, not args.sloppy, args.match)
+
+    filenames = copier.filter_files(args.file, not args.sloppy)
+    kindle = common.find_kindle(darwin, args.match)
+    copier.do_copy(kindle, filenames)

@@ -4,6 +4,8 @@
 import os.path
 import sys
 
+__all__ = ['filter_files', 'do_copy']
+
 def err(message):
     sys.stderr.write(message+'\n')
 
@@ -19,34 +21,16 @@ def check_file(f):
         return False
     return True
 
-def do_copy(provider, filenames, strict, pattern):
+def filter_files(filenames, strict):
     passed = filter(check_file, filenames)
     if strict:
         if len(passed) != len(filenames):
             sys.exit(1)
-    kindles = list(provider.find_all())
-    if not kindles:
-        err('Kindle not found')
-        sys.exit(1)
-    if pattern:
-        matched = filter(lambda x: x.match(pattern), kindles)
-        if not matched:
-            err('No Kindle matches %s' % pattern)
-            sys.exit(1)
-        if len(matched) > 1:
-            err('Too many Kindles match %s' % pattern)
-            sys.exit(1)
-        kindle = matched[0]
-    else:
-        if len(kindles) > 1:
-            err('Too many Kindles')
-            sys.exit(1)
-        kindle = kindles[0]
+    return passed
 
+def do_copy(kindle, filenames):
     kindle.prepare()
-
-    for f in passed:
+    for f in filenames:
         sys.stdout.write('Copying '+f+'\n')
         kindle.copy(f)
-
     kindle.cleanup()
