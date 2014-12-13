@@ -19,7 +19,7 @@ def check_file(f):
         return False
     return True
 
-def do_copy(provider, filenames, strict):
+def do_copy(provider, filenames, strict, pattern):
     passed = filter(check_file, filenames)
     if strict:
         if len(passed) != len(filenames):
@@ -28,10 +28,20 @@ def do_copy(provider, filenames, strict):
     if not kindles:
         err('Kindle not found')
         sys.exit(1)
-    if len(kindles) > 1:
-        err('Too many Kindles')
-        sys.exit(1)
-    kindle = kindles[0]
+    if pattern:
+        matched = filter(lambda x: x.match(pattern), kindles)
+        if not matched:
+            err('No Kindle matches %s' % pattern)
+            sys.exit(1)
+        if len(matched) > 1:
+            err('Too many Kindles match %s' % pattern)
+            sys.exit(1)
+        kindle = matched[0]
+    else:
+        if len(kindles) > 1:
+            err('Too many Kindles')
+            sys.exit(1)
+        kindle = kindles[0]
 
     kindle.prepare()
 

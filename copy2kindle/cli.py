@@ -10,6 +10,9 @@ from . import copier
 parser = argparse.ArgumentParser()
 parser.add_argument('-s', '--sloppy', action='store_true',
                     help='skip missing files and files of unknown type')
+parser.add_argument('-m', '--match',
+                    help='match Kindle by volume name or device name, e.g.'+
+                        ' disk4 or KINDLE_PAPERWEIGHT')
 parser.add_argument('file', nargs='*',
                     help='.mobi file(s) to be copied')
 
@@ -18,4 +21,4 @@ def main():
     if not len(args.file):
         parser.print_help()
         sys.exit(0)
-    copier.do_copy(darwin, args.file, not args.sloppy)
+    copier.do_copy(darwin, args.file, not args.sloppy, args.match)

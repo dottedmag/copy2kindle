@@ -59,9 +59,11 @@ def try_do(command, max_attempts=10, delay=0.5):
 
 
 class DarwinKindle(common.Kindle):
-    def __init__(self, dev, mountpoint):
+    def __init__(self, diskdev, dev, volume, mountpoint):
         super(DarwinKindle, self).__init__(mountpoint)
+        self.diskdev = diskdev
         self.dev = dev
+        self.volume = volume
 
     def _do_mount(self):
         run_diskutil(['mount', self.dev])
@@ -80,10 +82,14 @@ class DarwinKindle(common.Kindle):
         # mount+copy+unmount fails. Try it several times in a row.
         try_do(self._run_unmount)
 
+    def match(self, pattern):
+        return pattern in[self.dev, self.diskdev, self.volume]
+
 
 def find_all():
     for disk in disks():
         i = info(disk.dev)
         if i['MediaName'] == 'Kindle Internal Storage Media':
             pi = info(disk.partitions[0])
-            yield DarwinKindle(disk.partitions[0], pi['MountPoint'])
+            yield DarwinKindle(disk.dev, disk.partitions[0], pi['VolumeName'],
+                               pi['MountPoint'])
